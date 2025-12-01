@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -20,4 +21,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "4Call"
+
 include(":app")
+include(":core")
+include(":core:network")
