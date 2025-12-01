@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "4Call"
+
 include(":app")
+include(":core")
+include(":core:network")
