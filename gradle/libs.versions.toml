@@ -1,6 +1,6 @@
 [versions]
 agp = "8.13.1"
-kotlin = "2.2.21"
+kotlin = "2.1.10"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
@@ -67,6 +67,9 @@ retrofit = "3.0.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 robolectric = "4.16"
 turbine = "1.2.1"
+
+[bundles]
+androidx-compose-ui-test = ["androidx-compose-ui-test", "androidx-compose-ui-testManifest"]
 
 [libraries]
 #android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -206,20 +209,21 @@ room = { id = "androidx.room", version.ref = "room" }
 google-osslicenses = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "googleOssPlugin" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark"}
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 
 # Plugins defined by this project
-a4call-android-library = { id = "a4call.android.library" }
-a4call-android-application = { id = "a4call.android.application" }
-a4call-android-application-compose = { id = "a4call.android.application.compose" }
-a4call-android-application-firebase = { id = "a4call.android.application.firebase" }
-a4call-android-application-flavors = { id = "a4call.android.application.flavors" }
-a4call-android-application-jacoco = { id = "a4call.android.application.jacoco" }
-a4call-android-feature = { id = "a4call.android.feature" }
-a4call-android-library-compose = { id = "a4call.android.library.compose" }
-a4call-android-library-jacoco = { id = "a4call.android.library.jacoco" }
-a4call-android-lint = { id = "a4call.android.lint" }
-a4call-android-room = { id = "a4call.android.room" }
-a4call-android-test = { id = "a4call.android.test" }
-a4call-hilt = { id = "a4call.hilt" }
-a4call-jvm-library = { id = "a4call.jvm.library" }
-a4call-root = { id = "nowinandroid.root" }
+acall-android-library = { id = "acall.android.library" }
+acall-android-application = { id = "acall.android.application" }
+acall-android-application-compose = { id = "acall.android.application.compose" }
+acall-android-application-firebase = { id = "acall.android.application.firebase" }
+acall-android-application-flavors = { id = "acall.android.application.flavors" }
+acall-android-application-jacoco = { id = "acall.android.application.jacoco" }
+acall-android-feature = { id = "acall.android.feature" }
+acall-android-library-compose = { id = "acall.android.library.compose" }
+acall-android-library-jacoco = { id = "acall.android.library.jacoco" }
+acall-android-lint = { id = "acall.android.lint" }
+acall-android-room = { id = "acall.android.room" }
+acall-android-test = { id = "acall.android.test" }
+acall-hilt = { id = "acall.hilt" }
+acall-jvm-library = { id = "acall.jvm.library" }
+acall-root = { id = "nowinandroid.root" }

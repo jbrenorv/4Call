@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.a4call.android.library)
+    alias(libs.plugins.acall.android.library)
 }
 
 android {
-    namespace = "com.jbrenorv.a4call.core.network"
+    namespace = "com.jbrenorv.acall.core.network"
 }

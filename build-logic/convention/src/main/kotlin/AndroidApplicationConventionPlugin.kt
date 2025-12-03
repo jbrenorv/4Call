@@ -1,9 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.jbrenorv.a4call.convention.configureBadgingTasks
-import com.jbrenorv.a4call.convention.configureGradleManagedDevices
-import com.jbrenorv.a4call.convention.configureKotlinAndroid
-import com.jbrenorv.a4call.convention.configurePrintApksTask
+import com.jbrenorv.acall.convention.configureBadgingTasks
+import com.jbrenorv.acall.convention.configureGradleManagedDevices
+import com.jbrenorv.acall.convention.configureKotlinAndroid
+import com.jbrenorv.acall.convention.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -15,7 +15,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.application")
             apply(plugin = "org.jetbrains.kotlin.android")
-            apply(plugin = "a4call.android.lint")
+            apply(plugin = "acall.android.lint")
             apply(plugin = "com.dropbox.dependency-guard")
 
             extensions.configure<ApplicationExtension> {

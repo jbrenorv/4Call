@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import com.jbrenorv.a4call.convention.libs
+import com.jbrenorv.acall.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -22,8 +22,7 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("firebase.performance").get()) {
                     /*
                     Exclusion of protobuf / protolite dependencies is necessary as the
-                    datastore-proto brings in protobuf dependencies. These are the source of truth
-                    for Now in Android.
+                    datastore-proto brings in protobuf dependencies.
                     That's why the duplicate classes from below dependencies are excluded.
                     */
                     exclude(group = "com.google.protobuf", module = "protobuf-javalite")

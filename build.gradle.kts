@@ -17,5 +17,5 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.roborazzi) apply false
     alias(libs.plugins.google.osslicenses) apply false
-    alias(libs.plugins.a4call.root)
+    alias(libs.plugins.acall.root)
 }

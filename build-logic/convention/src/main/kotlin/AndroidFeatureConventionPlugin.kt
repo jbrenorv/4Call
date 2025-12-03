@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.jbrenorv.a4call.convention.configureGradleManagedDevices
-import com.jbrenorv.a4call.convention.libs
+import com.jbrenorv.acall.convention.configureGradleManagedDevices
+import com.jbrenorv.acall.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -10,8 +10,8 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "a4call.android.library")
-            apply(plugin = "a4call.hilt")
+            apply(plugin = "acall.android.library")
+            apply(plugin = "acall.hilt")
             apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 
             extensions.configure<LibraryExtension> {

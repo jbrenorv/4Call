@@ -1,4 +1,4 @@
-import com.jbrenorv.a4call.convention.configureGraphTasks
+import com.jbrenorv.acall.convention.configureGraphTasks
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

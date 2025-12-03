@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.TestExtension
-import com.jbrenorv.a4call.convention.configureGradleManagedDevices
-import com.jbrenorv.a4call.convention.configureKotlinAndroid
+import com.jbrenorv.acall.convention.configureGradleManagedDevices
+import com.jbrenorv.acall.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

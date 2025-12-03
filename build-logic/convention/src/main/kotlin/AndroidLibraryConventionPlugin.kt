@@ -1,11 +1,11 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.jbrenorv.a4call.convention.configureFlavors
-import com.jbrenorv.a4call.convention.configureGradleManagedDevices
-import com.jbrenorv.a4call.convention.configureKotlinAndroid
-import com.jbrenorv.a4call.convention.configurePrintApksTask
-import com.jbrenorv.a4call.convention.disableUnnecessaryAndroidTests
-import com.jbrenorv.a4call.convention.libs
+import com.jbrenorv.acall.convention.configureFlavors
+import com.jbrenorv.acall.convention.configureGradleManagedDevices
+import com.jbrenorv.acall.convention.configureKotlinAndroid
+import com.jbrenorv.acall.convention.configurePrintApksTask
+import com.jbrenorv.acall.convention.disableUnnecessaryAndroidTests
+import com.jbrenorv.acall.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -17,7 +17,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.library")
             apply(plugin = "org.jetbrains.kotlin.android")
-            apply(plugin = "a4call.android.lint")
+            apply(plugin = "acall.android.lint")
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)

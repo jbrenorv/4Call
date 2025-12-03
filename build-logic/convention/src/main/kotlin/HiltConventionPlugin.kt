@@ -1,5 +1,5 @@
 import com.android.build.gradle.api.AndroidBasePlugin
-import com.jbrenorv.a4call.convention.libs
+import com.jbrenorv.acall.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
