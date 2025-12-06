@@ -8,6 +8,12 @@ plugins {
 android {
     namespace = "com.jbrenorv.acall.core.data"
     testOptions.unitTests.isIncludeAndroidResources = true
+
+    buildTypes {
+        release {
+            consumerProguardFiles("proguard-data-rules.pro")
+        }
+    }
 }
 
 dependencies {
@@ -18,6 +24,12 @@ dependencies {
 
 //    implementation(projects.core.analytics)
 //    implementation(projects.core.notifications)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)

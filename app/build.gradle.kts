@@ -46,6 +46,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.login)
+    implementation(projects.feature.home)
     implementation(projects.feature.chat)
     implementation(projects.feature.chats)
     implementation(projects.feature.room)

@@ -2,7 +2,7 @@ package com.jbrenorv.acall.feature.rooms
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbrenorv.acall.core.database.repository.RoomRepository
+import com.jbrenorv.acall.core.data.repository.RoomRepository
 import com.jbrenorv.acall.core.model.Room
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

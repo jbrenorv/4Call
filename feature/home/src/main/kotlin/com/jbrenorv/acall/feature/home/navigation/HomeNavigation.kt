@@ -1,11 +1,11 @@
-package com.jbrenorv.acall.navigation
+package com.jbrenorv.acall.feature.home.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.jbrenorv.acall.HomeScreen
 import com.jbrenorv.acall.core.designsystem.icon.ACallIcons
 import com.jbrenorv.acall.feature.chats.navigation.ChatListRoute
+import com.jbrenorv.acall.feature.home.HomeScreen
 import com.jbrenorv.acall.feature.rooms.navigation.RoomListRoute
 import kotlinx.serialization.Serializable
 

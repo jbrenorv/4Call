@@ -1,4 +1,4 @@
-package com.jbrenorv.acall.core.database.repository
+package com.jbrenorv.acall.core.data.repository
 
 import com.jbrenorv.acall.core.model.LanguageLevel
 import com.jbrenorv.acall.core.model.Room
