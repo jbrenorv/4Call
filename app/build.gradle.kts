@@ -93,11 +93,11 @@ dependencies {
 //    testImplementation(projects.sync.syncTest)
     testImplementation(libs.kotlin.test)
 
-    testDemoImplementation(libs.androidx.navigation.testing)
-    testDemoImplementation(libs.robolectric)
-    testDemoImplementation(libs.roborazzi)
-//    testDemoImplementation(projects.core.screenshotTesting)
-//    testDemoImplementation(projects.core.testing)
+    testDevImplementation(libs.androidx.navigation.testing)
+    testDevImplementation(libs.robolectric)
+    testDevImplementation(libs.roborazzi)
+//    testDevImplementation(projects.core.screenshotTesting)
+//    testDevImplementation(projects.core.testing)
 
 //    androidTestImplementation(projects.core.testing)
 //    androidTestImplementation(projects.core.dataTest)
