@@ -5,3 +5,9 @@ data class User(
     val name: String,
     val photoUrl: String?
 )
+
+fun AuthUser.toUser() = User(
+    id = id,
+    name = name,
+    photoUrl = photoUrl
+)

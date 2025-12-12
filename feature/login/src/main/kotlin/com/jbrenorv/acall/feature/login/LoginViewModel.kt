@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.jbrenorv.acall.core.data.repository.auth.AuthRepository
+import com.jbrenorv.acall.core.data.repository.user.UserRepository
 import com.jbrenorv.acall.feature.login.navigation.LoginRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val repository: AuthRepository
+    private val repository: AuthRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     private val webClientId = savedStateHandle.toRoute<LoginRoute>().webClientId
     private val _isLoading = MutableStateFlow(false)
@@ -38,6 +40,9 @@ class LoginViewModel @Inject constructor(
             _isLoading.value = true
             repository
                 .loginWithGoogle(context, useGoogleIdOption, webClientId)
+                .onSuccess {
+                    userRepository.createUser()
+                }
                 .onFailure {
                     _isLoading.value = false
                     // TODO: handle failure

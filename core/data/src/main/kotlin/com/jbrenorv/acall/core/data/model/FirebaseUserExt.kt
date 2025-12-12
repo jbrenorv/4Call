@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.jbrenorv.acall.core.model.AuthUser
 
 fun FirebaseUser.asAuthUser(): AuthUser = AuthUser(
-    uid = uid,
+    id = uid,
     name = displayName ?: "",
     photoUrl = photoUrl?.toString()
 )

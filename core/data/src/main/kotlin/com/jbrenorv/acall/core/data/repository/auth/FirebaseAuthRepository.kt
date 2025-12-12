@@ -1,7 +1,6 @@
 package com.jbrenorv.acall.core.data.repository.auth
 
 import android.content.Context
-import android.util.Log
 import androidx.credentials.Credential
 import androidx.credentials.CredentialManager
 import androidx.credentials.CredentialOption
@@ -14,6 +13,7 @@ import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.jbrenorv.acall.core.data.exception.LoginException
 import com.jbrenorv.acall.core.data.model.asAuthUser
 import com.jbrenorv.acall.core.model.AuthUser
 import kotlinx.coroutines.channels.awaitClose
@@ -58,11 +58,9 @@ internal class FirebaseAuthRepository @Inject constructor(
                 val authUser = signInWithCredential(credential)
 
                 return Result.success(authUser)
-            } catch (e: NoCredentialException) {
-                Log.d("FirebaseAuthRepository", "NoCredentialException: $e")
+            } catch (_: NoCredentialException) {
                 throw LoginException("No available credential")
-            } catch (e: GetCredentialException) {
-                Log.d("FirebaseAuthRepository", "GetCredentialException: $e")
+            } catch (_: GetCredentialException) {
                 throw LoginException("Unable to load credentials")
             }
         }
@@ -115,8 +113,7 @@ internal class FirebaseAuthRepository @Inject constructor(
                 val firebaseUser = firebaseAuth.currentUser!!
 
                 return firebaseUser.asAuthUser()
-            } catch (e: Throwable) {
-                Log.d("FirebaseAuthRepository", "signInWithCredential error: $e")
+            } catch (_: Throwable) {
                 throw LoginException("Unknown error")
             }
         } else {

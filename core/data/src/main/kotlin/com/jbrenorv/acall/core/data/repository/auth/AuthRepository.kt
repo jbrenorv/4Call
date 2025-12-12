@@ -4,8 +4,6 @@ import android.content.Context
 import com.jbrenorv.acall.core.model.AuthUser
 import kotlinx.coroutines.flow.Flow
 
-class LoginException(override val message: String) : Exception()
-
 interface AuthRepository {
     val authUser: Flow<AuthUser?>
 

@@ -15,11 +15,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -49,8 +51,10 @@ internal fun RoomListRoute(
     viewModel: RoomListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     RoomListScreen(
         openRoom = openRoom,
+        createRoom = viewModel::createRoom,
         modifier = modifier,
         uiState = uiState
     )
@@ -59,19 +63,32 @@ internal fun RoomListRoute(
 @Composable
 internal fun RoomListScreen(
     openRoom: () -> Unit,
+    createRoom: () -> Unit,
     modifier: Modifier = Modifier,
     uiState: RoomListUiState
 ) {
-    when (uiState) {
-        RoomListUiState.Loading -> LoadingState(modifier)
-        is RoomListUiState.Success -> if (uiState.rooms.isNotEmpty()) {
-            RoomList(
-                modifier = modifier,
-                openRoom = openRoom,
-                uiState = uiState
+    Box(
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        when (uiState) {
+            RoomListUiState.Loading -> LoadingState(modifier)
+            is RoomListUiState.Success -> if (uiState.rooms.isNotEmpty()) {
+                RoomList(
+                    modifier = modifier,
+                    openRoom = openRoom,
+                    uiState = uiState
+                )
+            } else {
+                EmptyState(modifier)
+            }
+        }
+        FilledIconButton(
+            onClick = createRoom
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null
             )
-        } else {
-            EmptyState(modifier)
         }
     }
 }
