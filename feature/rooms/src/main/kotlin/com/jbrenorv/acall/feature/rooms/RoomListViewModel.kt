@@ -2,10 +2,10 @@ package com.jbrenorv.acall.feature.rooms
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbrenorv.acall.core.data.model.RoomData
 import com.jbrenorv.acall.core.data.repository.room.RoomRepository
-import com.jbrenorv.acall.core.model.LanguageLevel
-import com.jbrenorv.acall.core.model.Room
+import com.jbrenorv.acall.core.model.room.LanguageLevel
+import com.jbrenorv.acall.core.model.room.Room
+import com.jbrenorv.acall.core.model.room.RoomData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

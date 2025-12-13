@@ -1,22 +1,22 @@
 package com.jbrenorv.acall.core.data.repository.auth
 
 import android.content.Context
-import com.jbrenorv.acall.core.model.AuthUser
+import com.jbrenorv.acall.core.model.user.User
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    val authUser: Flow<AuthUser?>
+    val userFlow: Flow<User?>
 
     val hasUser: Boolean
-        get() = getCurrentAuthUser() != null
+        get() = getCurrentUser() != null
 
-    fun getCurrentAuthUser(): AuthUser?
+    fun getCurrentUser(): User?
 
     suspend fun loginWithGoogle(
         context: Context,
         useGoogleIdOption: Boolean,
         webClientId: String
-    ): Result<AuthUser>
+    ): Result<User>
 
     suspend fun logout()
 }

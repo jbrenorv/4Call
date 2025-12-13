@@ -41,7 +41,7 @@ class LoginViewModel @Inject constructor(
             repository
                 .loginWithGoogle(context, useGoogleIdOption, webClientId)
                 .onSuccess {
-                    userRepository.createUser()
+                    userRepository.saveUser()
                 }
                 .onFailure {
                     _isLoading.value = false

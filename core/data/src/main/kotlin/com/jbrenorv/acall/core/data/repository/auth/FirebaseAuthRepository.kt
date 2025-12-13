@@ -13,22 +13,23 @@ import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.jbrenorv.acall.core.data.exception.LoginException
-import com.jbrenorv.acall.core.data.model.asAuthUser
-import com.jbrenorv.acall.core.model.AuthUser
+import com.jbrenorv.acall.core.common.exception.LoginException
+import com.jbrenorv.acall.core.data.model.asUser
+import com.jbrenorv.acall.core.model.user.User
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+// TODO: consider move all firebase dependency to network module
 internal class FirebaseAuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ) : AuthRepository {
-    override val authUser: Flow<AuthUser?> = callbackFlow {
+    override val userFlow: Flow<User?> = callbackFlow {
         val authStateListener = FirebaseAuth.AuthStateListener { auth ->
             val firebaseUser = auth.currentUser
-            trySend(firebaseUser?.asAuthUser())
+            trySend(firebaseUser?.asUser())
         }
 
         firebaseAuth.addAuthStateListener(authStateListener)
@@ -38,26 +39,26 @@ internal class FirebaseAuthRepository @Inject constructor(
         }
     }
 
-    override fun getCurrentAuthUser(): AuthUser? =
-        firebaseAuth.currentUser?.asAuthUser()
+    override fun getCurrentUser(): User? =
+        firebaseAuth.currentUser?.asUser()
 
     override suspend fun loginWithGoogle(
         context: Context,
         useGoogleIdOption: Boolean,
         webClientId: String
-    ): Result<AuthUser> {
+    ): Result<User> {
         return runCatching {
             try {
-                val currentAuthUser = getCurrentAuthUser()
-                if (currentAuthUser != null) {
-                    return Result.success(currentAuthUser)
+                val currentUser = getCurrentUser()
+                if (currentUser != null) {
+                    return Result.success(currentUser)
                 }
 
                 val credentialOption = getCredentialOption(useGoogleIdOption, webClientId)
                 val credential = getCredential(context, credentialOption)
-                val authUser = signInWithCredential(credential)
+                val user = signInWithCredential(credential)
 
-                return Result.success(authUser)
+                return Result.success(user)
             } catch (_: NoCredentialException) {
                 throw LoginException("No available credential")
             } catch (_: GetCredentialException) {
@@ -102,7 +103,7 @@ internal class FirebaseAuthRepository @Inject constructor(
         return result.credential
     }
 
-    private suspend fun signInWithCredential(credential: Credential): AuthUser {
+    private suspend fun signInWithCredential(credential: Credential): User {
         if (credential is CustomCredential && credential.type == GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
             try {
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
@@ -112,7 +113,7 @@ internal class FirebaseAuthRepository @Inject constructor(
                 firebaseAuth.signInWithCredential(credential).await()
                 val firebaseUser = firebaseAuth.currentUser!!
 
-                return firebaseUser.asAuthUser()
+                return firebaseUser.asUser()
             } catch (_: Throwable) {
                 throw LoginException("Unknown error")
             }

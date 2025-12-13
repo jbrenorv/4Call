@@ -38,7 +38,7 @@ class ACallAppState(
     coroutineScope: CoroutineScope,
     authRepository: AuthRepository
 ) {
-    val isLoggedIn: StateFlow<Boolean> = authRepository.authUser
+    val isLoggedIn: StateFlow<Boolean> = authRepository.userFlow
         .map { authUser -> authUser != null }
         .stateIn(
             scope = coroutineScope,

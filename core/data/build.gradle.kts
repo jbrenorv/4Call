@@ -18,10 +18,10 @@ android {
 
 dependencies {
     api(projects.core.model)
-//    api(projects.core.common)
-//    api(projects.core.database)
+    api(projects.core.common)
+    api(projects.core.database)
 //    api(projects.core.datastore)
-//    api(projects.core.network)
+    api(projects.core.network)
 
 //    implementation(projects.core.analytics)
 //    implementation(projects.core.notifications)
@@ -31,7 +31,6 @@ dependencies {
     implementation(libs.googleid)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)

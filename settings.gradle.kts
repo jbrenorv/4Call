@@ -33,6 +33,8 @@ include(":core:datastore-proto")
 include(":core:datastore")
 include(":core:model")
 include(":core:data")
+include(":core:database")
+include(":core:common")
 
 include(":feature")
 include(":feature:login")

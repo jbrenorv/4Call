@@ -1,6 +1,6 @@
 package com.jbrenorv.acall.feature.rooms
 
-import com.jbrenorv.acall.core.model.Room
+import com.jbrenorv.acall.core.model.room.Room
 
 sealed interface RoomListUiState {
     data object Loading : RoomListUiState
