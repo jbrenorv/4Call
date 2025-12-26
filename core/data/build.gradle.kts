@@ -22,6 +22,7 @@ dependencies {
     api(projects.core.database)
 //    api(projects.core.datastore)
     api(projects.core.network)
+    api(projects.core.system)
 
 //    implementation(projects.core.analytics)
 //    implementation(projects.core.notifications)
@@ -31,6 +32,9 @@ dependencies {
     implementation(libs.googleid)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
+
+    implementation(libs.androidx.lifecycle.service)
+    implementation(libs.androidx.core.telecom)
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)

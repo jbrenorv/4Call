@@ -5,6 +5,7 @@ import com.jbrenorv.acall.core.model.room.RoomData
 import com.jbrenorv.acall.core.network.document.RoomDocument
 import com.jbrenorv.acall.core.network.document.create
 import com.jbrenorv.acall.core.network.document.toRoomDocument
+import com.jbrenorv.acall.core.network.util.requireObject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -44,7 +45,12 @@ internal class FirebaseRemoteRoomDatasource @Inject constructor(
                 .set(roomDocument)
                 .await()
 
-            return Result.success(roomDocument)
+            val createdDocument = roomDocumentReference
+                .get()
+                .await()
+                .requireObject(RoomDocument::class.java)
+
+            return Result.success(createdDocument)
         }
     }
 

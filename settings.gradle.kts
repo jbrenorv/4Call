@@ -35,6 +35,7 @@ include(":core:model")
 include(":core:data")
 include(":core:database")
 include(":core:common")
+include(":core:system")
 
 include(":feature")
 include(":feature:login")

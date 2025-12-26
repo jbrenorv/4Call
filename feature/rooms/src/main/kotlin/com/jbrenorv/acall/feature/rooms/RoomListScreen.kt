@@ -1,5 +1,7 @@
 package com.jbrenorv.acall.feature.rooms
 
+import android.Manifest
+import android.os.Build
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.permissions.rememberPermissionState
 import com.jbrenorv.acall.feature.rooms.component.RoomCard
 import com.jbrenorv.acall.feature.rooms.component.RoomListEmptyState
 import com.jbrenorv.acall.feature.rooms.component.RoomListLoadingState
@@ -36,6 +41,7 @@ internal fun RoomListRoute(
     )
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 internal fun RoomListScreen(
     openRoom: () -> Unit,
@@ -43,6 +49,18 @@ internal fun RoomListScreen(
     modifier: Modifier = Modifier,
     uiState: RoomListUiState
 ) {
+    val permissionsState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        rememberPermissionState(
+            permission = Manifest.permission.POST_NOTIFICATIONS
+        ) { granted ->
+            if (granted) {
+                createRoom()
+            }
+        }
+    } else {
+        null
+    }
+
     Box {
         when (uiState) {
             RoomListUiState.Loading -> RoomListLoadingState(modifier)
@@ -60,7 +78,13 @@ internal fun RoomListScreen(
             modifier = Modifier
                 .padding(16.dp)
                 .align(Alignment.BottomEnd),
-            onClick = createRoom
+            onClick = {
+                if (permissionsState == null) {
+                    createRoom()
+                } else {
+                    permissionsState.launchPermissionRequest()
+                }
+            }
         ) {
             Icon(
                 imageVector = Icons.Default.Add,

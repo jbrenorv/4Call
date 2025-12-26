@@ -9,6 +9,8 @@ import com.jbrenorv.acall.core.data.repository.room.OnlineOnlyRoomRepository
 import com.jbrenorv.acall.core.data.repository.room.RoomRepository
 import com.jbrenorv.acall.core.data.repository.user.OfflineFirstUserRepository
 import com.jbrenorv.acall.core.data.repository.user.UserRepository
+import com.jbrenorv.acall.core.data.util.DefaultRoomServiceConnectionManager
+import com.jbrenorv.acall.core.data.util.RoomServiceConnectionManager
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,12 @@ abstract class DataModule {
     internal abstract fun bindsUserRepository(
         impl: OfflineFirstUserRepository,
     ): UserRepository
+
+    @Binds
+    @Singleton
+    internal abstract fun bindsRoomServiceConnectionManager(
+        impl: DefaultRoomServiceConnectionManager,
+    ): RoomServiceConnectionManager
 
     @Binds
     internal abstract fun bindsRoomRepository(

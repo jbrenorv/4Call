@@ -12,6 +12,7 @@ dependencies {
     implementation(projects.core.data)
 
     implementation(libs.coil.kt.compose)
+    implementation(libs.accompanist.permissions)
 //
 //    testImplementation(projects.core.testing)
 

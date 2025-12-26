@@ -72,7 +72,7 @@ private fun RoomCardHeader(
     modifier: Modifier = Modifier,
     room: Room
 ) {
-    val annotatedString = buildAnnotatedString {
+    val title = buildAnnotatedString {
         append("${room.language} ")
         withStyle(SpanStyle(fontStyle = FontStyle.Italic)) {
             append(room.languageLevel.name)
@@ -89,7 +89,7 @@ private fun RoomCardHeader(
         )
         Spacer(Modifier.width(16.dp))
         Column {
-            Text(annotatedString)
+            Text(title)
             Text(room.topic)
         }
         Spacer(Modifier.weight(1f))
@@ -149,7 +149,6 @@ private fun UserCard(
     modifier: Modifier = Modifier,
     user: User
 ) {
-    val letter = (user.name.firstOrNull() ?: 'A').toString()
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -172,6 +171,7 @@ private fun UserCard(
                 contentScale = ContentScale.Crop,
             )
         } else {
+            val letter = (user.name.firstOrNull() ?: 'A').toString()
             Text(
                 text = letter.uppercase(),
                 style = MaterialTheme.typography.bodyLarge

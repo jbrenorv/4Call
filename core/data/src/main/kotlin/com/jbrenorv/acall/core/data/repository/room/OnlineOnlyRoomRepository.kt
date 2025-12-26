@@ -3,6 +3,7 @@ package com.jbrenorv.acall.core.data.repository.room
 import com.jbrenorv.acall.core.common.exception.NoAuthUserException
 import com.jbrenorv.acall.core.data.repository.auth.AuthRepository
 import com.jbrenorv.acall.core.data.repository.user.UserRepository
+import com.jbrenorv.acall.core.data.util.RoomServiceConnectionManager
 import com.jbrenorv.acall.core.model.room.Room
 import com.jbrenorv.acall.core.model.room.RoomData
 import com.jbrenorv.acall.core.network.datasource.room.RemoteRoomDatasource
@@ -17,7 +18,8 @@ import javax.inject.Inject
 class OnlineOnlyRoomRepository @Inject constructor(
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
-    private val remoteRoomDatasource: RemoteRoomDatasource
+    private val remoteRoomDatasource: RemoteRoomDatasource,
+    private val serviceConnectionManager: RoomServiceConnectionManager
 ) : RoomRepository {
     override fun getRooms(): Flow<List<Room>> = remoteRoomDatasource
         .getRooms()
@@ -40,7 +42,11 @@ class OnlineOnlyRoomRepository @Inject constructor(
                 roomData = roomData
             )
 
-            return result.map { roomDocument -> roomDocument.toRoom(currentUser) }
+            return result.map { roomDocument ->
+                val room = roomDocument.toRoom(currentUser)
+                serviceConnectionManager.addRoom(room)
+                room
+            }
         }
     }
 }
